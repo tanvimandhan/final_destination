@@ -1,5 +1,6 @@
 import {Router} from "express";
 import {registerUser} from "../controllers/user.controllers.js";
+import {upload} from "../middlewares/multer.middlewares.js"
 // import { 
 //     loginUser, 
 //     logoutUser, 
@@ -13,23 +14,23 @@ import {registerUser} from "../controllers/user.controllers.js";
 //     getWatchHistory, 
 //     updateAccountDetails
 // } from "../controllers/user.controller.js";
-// import {upload} from "../middlewares/multer.middleware.js"
+
 // import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 
 const router = Router()
 
 router.route("/register").post(
-    // upload.fields([
-    //     {
-    //         name: "avatar",
-    //         maxCount: 1
-    //     }, 
-    //     {
-    //         name: "coverImage",
-    //         maxCount: 1
-    //     }
-    // ]),
+    upload.fields([
+        {
+            name: "avatar",
+            maxCount: 1
+        }, 
+        {
+            name: "coverImage",
+            maxCount: 1
+        }
+    ]),
     registerUser
     )
 
